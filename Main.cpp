@@ -36,7 +36,7 @@ int main()
 	QueryPerformanceFrequency(&f);
 	printf_s("frequency: %I64x Hz\n", f);
 
-	double dst = 0;
+	double* dst = new double[9000000];
 	double* src1 = new double[9000000];
 	double* src2 = new double[9000000];
 
@@ -48,14 +48,14 @@ int main()
 
 	// operation omp
 	QueryPerformanceCounter(&t1);
-	
+	MatrixOperation::Cross(dst, src1, src2, 3000, 3000, 3000);
 	QueryPerformanceCounter(&t2);
 	time1 = 1000000 * (double)(t2.QuadPart - t1.QuadPart) / (double)f.QuadPart;
 	std::cout << "takes time:" << time1 << "us\n";
 
 	// operation no omp
 	QueryPerformanceCounter(&t1);
-	
+	MatrixOperation::cross(dst, src1, src2, 3000, 3000, 3000);
 	QueryPerformanceCounter(&t2);
 	time2 = 1000000 * (double)(t2.QuadPart - t1.QuadPart) / (double)f.QuadPart;
 	std::cout << "takes time:" << time2 << "us\n";

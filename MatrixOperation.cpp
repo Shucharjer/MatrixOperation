@@ -8,7 +8,7 @@ void MatrixOperation::Cross(double* dst, double* src1, double* src2, int rowsOfs
 {
 #pragma omp parallel for simd
 	for (int i = 0; i < rowsOfsrc1; i++)
-		for (int j = 0; j < rowsOfsrc1; j++)
+		for (int j = 0; j < colsOfsrc2; j++)
 			*(dst + i * colsOfsrc2 + j) = 0;
 
 	for (int i = 0; i < rowsOfsrc1; i++)
