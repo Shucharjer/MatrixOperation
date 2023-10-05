@@ -50,14 +50,14 @@ int main()
 	QueryPerformanceCounter(&t1);
 	MatrixOperation::Cross(dst, src1, src2, 3000, 3000, 3000);
 	QueryPerformanceCounter(&t2);
-	time1 = 1000000 * (double)(t2.QuadPart - t1.QuadPart) / (double)f.QuadPart;
+	time1 = (double)(t2.QuadPart - t1.QuadPart) / (double)f.QuadPart;
 	std::cout << "takes time:" << time1 << "us\n";
 
 	// operation no omp
 	QueryPerformanceCounter(&t1);
-	MatrixOperation::cross(dst, src1, src2, 3000, 3000, 3000);
+	// MatrixOperation::cross(dst, src1, src2, 3000, 3000, 3000);
 	QueryPerformanceCounter(&t2);
-	time2 = 1000000 * (double)(t2.QuadPart - t1.QuadPart) / (double)f.QuadPart;
+	time2 = (double)(t2.QuadPart - t1.QuadPart) / (double)f.QuadPart;
 	std::cout << "takes time:" << time2 << "us\n";
 
 	std::cout << "time2 - time1: " << time2 - time1 << '\n';
